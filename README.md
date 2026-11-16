@@ -56,7 +56,7 @@ cos/sin列各减其均值形成A，QR分解A=QR。对中心化厚度y_c，解释
 
 ## 实体、界面与校验
 
-79个有职责的Python/TS/TSX/CSS文件（不含空包、依赖和dist）。五实体TraverseStudy → TraversePoint → FrequencyPlan → SpectrumRun → WeaveNote贯穿ORM/schema/service/routes、前端API/store和六页：谱峰总览、不等距测线、频率计划、完整谱与全局p、织片补测、过程留痕。
+80个有职责的Python/TS/TSX/CSS文件（不含空包、依赖和dist）。五实体TraverseStudy → TraversePoint → FrequencyPlan → SpectrumRun → WeaveNote贯穿ORM/schema/service/routes、前端API/store和六页：谱峰总览、不等距测线、频率计划、完整谱与全局p、织片补测、过程留痕。SpectrumComputation按内容指纹（测点编号/位置/厚度＋频率网格/B/seed＋算法版本，不含名称）让冻结输入完全相同的研究共享一次计算：异名可复用，各run保留自己的测线与计划快照作来源，结果副本按各自快照重写指纹；厚度、位置、频率、置换次数或种子不同即不同指纹，绝不复用。部分唯一索引保证同一指纹最多一份活跃计算；运行可单独取消（取消一份不影响其余），最后一份取消即停止剩余置换，之后同输入再建会重新计算；落库全部按状态条件更新，已取消运行不被晚到结果复活，其余运行完整获得全谱与零分布。既存运行结果与批准说明快照不被修改。
 
 前端 `src/{api,stores,types,components/common,hooks,pages,router,utils,constants}`；后端 `src/{routes,controllers,services,models,schemas,middlewares,utils,constants,config}`，另scripts/seed_demo.py与migrations/。SpectrumPlot、TracePlot、PeakSummary、RunList在多页复用，PermutationPanel只画后端实际null频数；useTask/useRoute和format处理交互。React挂载id=root与createRoot一致。
 

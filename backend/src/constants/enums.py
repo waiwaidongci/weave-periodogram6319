@@ -8,6 +8,13 @@ class RunStatus(StrEnum):
  RUNNING='running'
  COMPLETED='completed'
  FAILED='failed'
+ CANCELLED='cancelled'
+class ComputeStatus(StrEnum):
+ QUEUED='queued'
+ RUNNING='running'
+ COMPLETED='completed'
+ FAILED='failed'
+ CANCELLED='cancelled'
 class NoteStatus(StrEnum):
  DRAFT='draft'
  APPROVED='approved'

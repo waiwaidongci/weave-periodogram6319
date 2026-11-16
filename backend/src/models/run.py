@@ -7,6 +7,7 @@ class SpectrumRun(Base):
  id:Mapped[int]=mapped_column(primary_key=True)
  study_id:Mapped[int]=mapped_column(ForeignKey('traverse_studies.id'))
  plan_id:Mapped[int]=mapped_column(ForeignKey('frequency_plans.id'))
+ computation_id:Mapped[int|None]=mapped_column(ForeignKey('spectrum_computations.id'),nullable=True)
  name:Mapped[str]=mapped_column(String(180),unique=True)
  source_snapshot:Mapped[dict]=mapped_column(JSON)
  plan_snapshot:Mapped[dict]=mapped_column(JSON)

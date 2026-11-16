@@ -15,6 +15,7 @@ from src.routes import auth,source,plans,runs,notes,audit
 @asynccontextmanager
 async def lifespan(app):
  Base.metadata.create_all(engine)
+ with engine.begin() as connection:connection.execute(text('ALTER TABLE spectrum_runs ADD COLUMN IF NOT EXISTS computation_id INTEGER'))
  if SEED_DEMO:
   try:
    from scripts.seed_demo import seed
